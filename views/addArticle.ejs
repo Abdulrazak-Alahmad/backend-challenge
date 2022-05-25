@@ -1,0 +1,26 @@
+<%- include('./component/header.ejs') %>
+
+    <form method="POST" action="/add-article">
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Title</label>
+            <input required type="text" name="title" placeholder="title" class="title" id="exampleInputEmail1" aria-describedby="emailHelp">
+            
+  </div>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Article</label>
+            <input required type="text" name="article" class="article" id="exampleInputPassword1" placeholder="Article">
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+
+
+
+
+
+
+
+
+    <%- include('./component/footer.ejs') %>

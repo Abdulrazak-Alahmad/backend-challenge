@@ -1,0 +1,36 @@
+<%- include('./component/header.ejs')   %>
+
+
+<% if (result.length > 0){  result.forEach(element=>{ %> 
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">  <a href="/article/<%= element._id %>">  <%= element.title %></a></h5>
+
+          <p class="card-text"><%= element.article %></p>
+          
+        </div>
+      </div>
+
+    <%
+}) } else{%>
+
+   <h3> there is no record</h3>
+    <%
+ }%>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%- include('./component/footer.ejs')   %>
