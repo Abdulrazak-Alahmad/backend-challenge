@@ -10,6 +10,8 @@ const postNewArticle = (req, res) => {
         res.render('addArticle',{err:false});
     }
     if (req.method === 'POST') {
+        let titleLength=req.body.title.split(' ');
+        if(titleLength.length >25){
         const article = new Article(req.body)
         article.save()
             .then(result => {
@@ -18,6 +20,10 @@ const postNewArticle = (req, res) => {
             .catch(err => {
                res.render('addArticle',{err:err.errors})
             })
+        }
+        else{
+            res.render('addArticle',{err:'must be more than 25'})
+        }
     }
 }
 const showOneArticle = (req, res) => {
