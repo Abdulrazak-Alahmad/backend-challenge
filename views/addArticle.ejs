@@ -3,15 +3,22 @@
     <form method="POST" action="/add-article">
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Title</label>
-            <input required type="text" name="title" placeholder="title" class="title" id="exampleInputEmail1" aria-describedby="emailHelp">
-            
-  </div>
+            <input required type="text" name="title" placeholder="title" class="title" id="exampleInputEmail1"
+                aria-describedby="emailHelp">
+            <% if(err.title) {%>
+                    <small class="error"><%= err.title.message%></small>
+                  <% } %>
+
+        </div>
         </div>
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Article</label>
             <input required type="text" name="article" class="article" id="exampleInputPassword1" placeholder="Article">
+            <% if(err.article) {%>
+                <small class="error"><%=err.article.message%></small>
+              <%}%>
         </div>
-        
+
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 
