@@ -7,7 +7,7 @@ const getHomepage = (req, res) => {
 }
 const postNewArticle = (req, res) => {
     if (req.method === 'GET') {
-        res.render('addArticle')
+        res.render('addArticle',{err:false});
     }
     if (req.method === 'POST') {
         const article = new Article(req.body)
@@ -16,7 +16,7 @@ const postNewArticle = (req, res) => {
                 res.redirect('/')
             })
             .catch(err => {
-                res.render('addArticle')
+               res.render('addArticle',{err:err.errors})
             })
     }
 }
