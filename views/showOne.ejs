@@ -11,8 +11,8 @@ if (result){  %>
         <div class="card-body">
           <h5 class="card-title"><%= result.title %></h5>
           <p class="card-text"><%= result.article %></p>
-          <a href="/edit-article/<%= result._id %>" class="btn btn-primary">Update</a>
-          <a href="/delete-article/<%= result._id %>" class="btn btn-warning">Delete</a>
+          <a href="/edit/article/<%= result._id %>" class="btn btn-primary">Update</a>
+          <a href="/delete/article/<%= result._id %>" class="btn btn-warning">Delete</a>
         </div>
       </div>
     
