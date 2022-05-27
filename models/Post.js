@@ -1,17 +1,17 @@
 const mongoose= require('mongoose');
 const Schema =mongoose.Schema;
-const articleSchema = new Schema({
-    title: {
+const FEED = new Schema({
+    name: {
         type : String,
         required: true,
-        minlength:25
+        maxlength:15
     },
-    article: {
+    message: {
         type : String,
         required: true,
-        minlength:100
+        maxlength:40
     }
 },{timestamps:true})
 
-const Article = mongoose.model('Article',articleSchema);
-module.exports=Article;
+const feed  = mongoose.model('FEED ',FEED);
+module.exports=feed ;

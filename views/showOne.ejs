@@ -1,43 +1,46 @@
-<%- include('./component/header.ejs')   %>
+<%- include('./component/header.ejs') %>
 
-<% 
-console.log(result);
-if (result){  %>
+  <% console.log(result); if (result){ %>
 
     <div class="card">
-        <div class="card-header">
-          Article
-        </div>
-        <div class="card-body">
-          <h5 class="card-title"><%= result.title %></h5>
-          <p class="card-text"><%= result.article %></p>
-          <a href="/edit/article/<%= result._id %>" class="btn btn-primary">Update</a>
-          <a href="/delete/article/<%= result._id %>" class="btn btn-warning">Delete</a>
-        </div>
+      <div class="card-header">
+        Post
       </div>
-    
-  
-
-    <%
- } else{%>
-
-    there is no record
-    <%
- }%>
-
-
-
-
-
-
-
-
-
-
+      <div class="card-body">
+        <h5 class="card-title">
+          <%= result.name %>
+        </h5>
+        <p class="card-text">
+          <%= result.message %>
+        </p>
+        <% var date=result.createdAt; var dd=String(date.getDate()).padStart(2, '0' ); var mm=String(date.getMonth() +
+          1).padStart(2, '0' ); var yyyy=date.getFullYear(); date=mm + '/' + dd + '/' + yyyy; %>
+          <p class="card-text">
+            <%= date %>
+          </p>
+          
+          <a href="/feed/edit/<%= result._id %>" class="btn btn-primary">Edit Post</a>
+          <a href="/delete/article/<%= result._id %>" class="btn btn-warning">Delete</a>
+      </div>
+    </div>
 
 
 
 
 
+    <% } else{%>
 
-<%- include('./component/footer.ejs')   %>
+      there is no record
+      <% }%>
+
+
+
+
+
+
+
+
+
+
+
+        <%- include('./component/footer.ejs') %>

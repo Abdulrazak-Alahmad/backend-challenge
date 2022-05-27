@@ -1,23 +1,79 @@
-<%- include('./component/header.ejs')   %>
+<%- include('./component/header.ejs') %>
 
 
-<% if (result.length > 0){  result.forEach(element=>{ %> 
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title">  <a href="/article/<%= element._id %>">  <%= element.title %></a></h5>
 
-          <p class="card-text"><%= element.article %></p>
-          
+
+
+  <form method="POST" action="/feed">
+    <div class="mb-3">
+      <h4>Add a post</h4>
+      <br>
+
+      <label for="exampleInputEmail1" class="form-label">Name</label>
+      <input required type="text" name="name" placeholder="Name" class="name" id="exampleInputEmail1"
+        aria-describedby="emailHelp">
+
+
+
+    </div>
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Message</label>
+      <input required type="text" name="message" class="message" id="exampleInputPassword1" placeholder="Message">
+
+    </div>
+    <div>
+      <% if(err) {%>
+        <small class="error">
+          <%= err%>
+        </small>
+        <% } %>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+
+
+
+
+
+  <% if (result.length> 0){
+
+    result.forEach(element=>{
+    var date =element.createdAt;
+    var dd = String(date.getDate()).padStart(2, '0');
+    var mm = String(date.getMonth() + 1).padStart(2, '0');
+    var yyyy = date.getFullYear();
+    date = mm + '/' + dd + '/' + yyyy;
+    %>
+    <div class="card" style="width: 18rem">
+     
+      <div class="card-body">
+        <div>
+          <h4 class="card-title">
+            <%= element.name %>
+          </h4>
+
+          <h6 class="card-text">
+            <%= element.message %>
+          </h6>
         </div>
+        <div>
+          <p class="card-text">
+            <%= date %>
+          </p>
+          <a href="/feed/<%= element._id %>"> see more </a>
+        </div>
+
+
       </div>
+    </div>
 
-    <%
-}) } else{%>
+    <% }) } else{%>
 
-   <h3> there is no record</h3>
-    <%
- }%>
-
+      <h3> there is no record</h3>
+      <% }%>
 
 
 
@@ -33,4 +89,5 @@
 
 
 
-<%- include('./component/footer.ejs')   %>
+
+        <%- include('./component/footer.ejs') %>

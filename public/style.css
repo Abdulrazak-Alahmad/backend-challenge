@@ -9,3 +9,8 @@ form{
 small{
     color: red;
 }
+footer{
+    text-align: center;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
