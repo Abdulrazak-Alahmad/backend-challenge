@@ -1,19 +1,20 @@
 const feed = require('../models/Post')
-
+let title =''
 let allPosts=''
-const getHomepage1 = (req, res) => {
+const redirectHomepage = (req, res) => {
     res.redirect('/feed')
 }
 const getHomepage = (req, res) => {
     feed.find().sort({ createdAt: -1 })
         .then((result) => {
             allPosts=result;
-            res.render('index', { result, err:false })
+            res.render('index', { result, err:false,
+            title:'Welcome to Facebook' })
         })
 }
 const postNewPost = (req, res) => {
     if (req.method === 'GET') {
-        res.render('index',{err:false});
+        res.render('index',{err:false,title:'Welcome to Facebook' });
     }
     if (req.method === 'POST') {
        
@@ -24,26 +25,26 @@ const postNewPost = (req, res) => {
                 res.redirect('/feed')
             })
             .catch(err => {
-               res.redirect('index',{err:err.errors})
+               res.redirect('index',{err:err.errors,title:'Welcome to Facebook' })
             })
         }
         else if (req.body.name.length <15 && req.body.message.length >40) {
             
-            res.render('index',{ result:allPosts,err:' The Message field must be no longer than 40 characters'})
+            res.render('index',{ result:allPosts,err:' The Message field must be no longer than 40 characters',title:'Welcome to Facebook'})
         }else if  (req.body.name.length >15 && req.body.message.length <40){
             
-            res.render('index',{ result:allPosts,err:' The Name field must be no longer than 15 characters'})
+            res.render('index',{ result:allPosts,err:' The Name field must be no longer than 15 characters',title:'Welcome to Facebook'})
         }
         else{
             
-            res.render('index',{ result:allPosts,err:' The Name field must be no longer than 15 characters and The Message field must be no longer than 40 characters '})
+            res.render('index',{ result:allPosts,err:' The Name field must be no longer than 15 characters and The Message field must be no longer than 40 characters ',title:'Welcome to Facebook'})
         }
     }
 }
 const showOnePost = (req, res) => {
     feed.findById(req.params.id)
         .then((result) => {
-            res.render('showOne', { result })
+            res.render('showOne', { result,title:'Show one page'  })
         })
         .catch(err => console.log(err))
 }
@@ -51,7 +52,7 @@ const updateOnePost = (req, res) => {
     if (req.method === 'GET') {
         feed.findById(req.params.id)
             .then((result) => {
-                res.render('editPost', { result })
+                res.render('editPost', { result,title:'Edit page'  })
             })
             .catch(err => console.log(err))
     }
@@ -84,5 +85,5 @@ module.exports = {
     showOnePost,
     updateOnePost,
     deleteOnePost,
-    getHomepage1
+    redirectHomepage
 }
